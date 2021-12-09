@@ -1,5 +1,5 @@
-from flask import Flask
-from flask.templating import render_template
+from flask import Flask,render_template
+from forms import LoginForm
 app = Flask(__name__)
 
 @app.route('/')
