@@ -16,7 +16,7 @@
   
   #app-header {
     background-color: #282c34;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.952), rgba(0,0,0,0.5)) ,url("images/first.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.952), rgba(0,0,0,0.5)) ,url("first.jpg");
     background-size: cover;
     min-height: 100vh;
     display: flex;
