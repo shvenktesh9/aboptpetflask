@@ -30,13 +30,32 @@
                      <button class="button"> <a class="app-link" href="/login">LOGIN</a></button>
                  </div>
                  <div class="about">
-                     <p>Dont have an account click to create now. </p>
+                     <p>Click to create account </p>
                      <button class="button"> <a class="app-link" href="/signup">SIGNUP</a></button>
                  </div>
              
          </div>
-           
+         
         </header>
+        <div class="pets">
+            <table>
+               <!--   <th>
+                   <td>PET IMAGE</td>
+                   <td>PET NAME</td>
+                   <td>PET DESCRIPTION</td>
+                </th>  -->
+                {% for pet in pets%}
+                <tr>
+                    
+                    <td><a href="{{url_for('details', id=pet['id'] )}}"><img src="{{url_for('static', filename=pet["id"]|string+".jpg")}}"></a></td>
+                  <!--  <td> {{pet["name"]}} </td>
+                    <td> {{pet["description"]}} </td> -->
+                   
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+          
         
         
       
