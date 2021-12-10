@@ -5,6 +5,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dfewfew123213rwdsgert34tgfd1234trgf'
 
 pets=[{"id":1, "name":"Rocky", "description":"German Shephard"}]
+users = [
+            {"id": 1, "full_name": "Pet", "email": "t@pets.co", "password": "password"},
+        ]
 @app.route('/')
 def home():
     user={'username':'namrata'}
