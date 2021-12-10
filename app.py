@@ -42,17 +42,23 @@ def about():
     posts=['hello','post1','hello2']
     return render_template('about.html', posts=posts)
 
-@app.route('/login',methods=["GET","POST"])
-def Login():
+@app.route("/login", methods=["POST", "GET"])
+def login():
     form = LoginForm()
     if form.validate_on_submit():
-        for u_email,u_password in users.items():
-            if u_email==form.email.data and u_password==form.password.data:
-                return render_template("login.html",message="success")
-        return render_template("login.html",message="unsuccessful")
-    elif form.errors:
-        print(form.errors.items())
-    return render_template('login.html', form = form)
+        user = next((user for user in users if user["email"] == form.email.data and user["password"] == form.password.data), None)
+        if user is None:
+            return render_template("login.html", form = form, message = "Wrong Credentials. Please Try Again.")
+        else:
+            session['user'] = user
+            return render_template("login.html", message = "Successfully Logged In!")
+    return render_template("login.html", form = form)
+
+@app.route("/logout")
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    return redirect(url_for('homepage', _scheme='https', _external=True))
 
 @app.route("/signup",methods=["GET","POST"])
 def Signup():
