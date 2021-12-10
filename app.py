@@ -19,8 +19,11 @@ def about():
     return render_template('about.html', posts=posts)
 
 @app.route('/login')
-def userLogin():
-    return render_template('login.html')
+def Login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return render_template("login.html", message = "Successfully Logged in.")
+    return render_template('login.html', form = form)
 
 @app.route("/signup",methods=["GET","POST"])
 def Signup():
