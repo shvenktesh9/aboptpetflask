@@ -3,6 +3,27 @@ from forms import SignUpForm , LoginForm
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'dfewfew123213rwdsgert34tgfd1234trgf'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///paws.db'
+db = SQLAlchemy(app)
+
+"""Model for Pets."""
+class Pet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    age = db.Column(db.String)
+    bio = db.Column(db.String)
+    posted_by =  db.Column(db.String, db.ForeignKey('user.id'))
+
+
+"""Model for Users."""
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String)
+    email = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+    pets = db.relationship('Pet', backref = 'user')
+
+db.create_all() 
 
 pets=[{"id":1, "name":"Rocky", "description":"German Shephard"}]
 users = [
