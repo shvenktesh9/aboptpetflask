@@ -7,32 +7,38 @@
         <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}"> 
     </head>
     <body>
-        <form >
-            <div class="imgcontainer">
-              <img src="../static/first.jpg" alt="Avatar" class="avatar">
-            </div>
-          
-            <div class="container">
-              <label for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-          
-              <button type="submit">Login</button>
-              <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-              </label>
-            </div>
-          
-            <div class="container">
-              <button type="button" class="cancelbtn">Cancel</button>
-              <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-            <div id="home">
-                <button id="btn"><a href="/">Click here to go to the home page</a></button>
-            </div>
-          </form>
+       {% if message %}
+        {{ message }}
+          {% endif %}
+          {% if form %}
+      <form action="{{url_for('Login')}}" method="POST">
+          {{form.email.label}} <br>
+          {{form.email}}<br>
+          {% if form.email.errors %}
+            <br>
+
+                    {% for error in form.email.errors %}
+                    <b id="error">{{ error }}</b>
+                    {% endfor %}
+
+            {% endif %}
+
+            {{ form.password.label }}: <br>
+            {{ form.password }}<br>
+            {% if form.email.errors %}
+            <br>
+
+                    {% for error in form.password.errors %}
+                    <b id="error">{{ error }}</b>
+                    {% endfor %}
+
+            {% endif %}
+            {{ form.csrf_token }}
+            <br>
+            {{ form.submit }}
+
+      </form>
+      {% endif %}
         
     </body>
 </html>
