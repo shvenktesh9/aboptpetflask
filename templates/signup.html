@@ -11,9 +11,9 @@
       {% if message %}
     {{ message }}
         {% endif %}
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
         {% if form %}
-        <form action="{{url_for('signup')}}" method="POST">
+        <form action="{{url_for('Signup')}}" method="POST">
             {{ form.full_name.label }}: <br>
             {{ form.full_name }} 
             {% if form.full_name.errors %}
@@ -38,7 +38,7 @@
             <br>
             {{ form.password.label }}: <br>
             {{ form.password }}
-            {% if form.email.errors %}
+            {% if form.password.errors %}
             <br>
 
                     {% for error in form.password.errors %}
